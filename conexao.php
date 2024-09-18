@@ -1,15 +1,16 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "senac";
+$host = 'localhost';
+$dbname = 'sistema';
+$username = 'root';
+$password = '';
 
-//Criar conexao 
-$con = mysqli_connect($servername, $username, $password, $dbname);
-
-//verificador conexao
-if (!$con){
-    die("Erro na Conexao:" . mysqli_connect_erro());
+try{
+    &PDO = new PDO("mysql:host=$host;dbname", $username, $password);
+    &PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
-echo "Conectado com sucesso!";
+catch (PDOException $e){
+    die("Erro na conexao: " . $e->getMessage());
+}
+
+
 ?>
